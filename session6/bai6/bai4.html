@@ -13,11 +13,20 @@
         let maths = +prompt( "moi ban nhap diem mon TOAN");
         let physics = +prompt( "moi ban nhap diem mon LY");
         let chemistry = +prompt("moi ban nhap diem mon Hoa");
-        let total = maths+physics+chemistry;
-        let medium = total/3;
-        console.log("tong diem 3 mon toan ly hoa la:",total);
-        console.log("diem trung binh:",medium);
+        function tinhDiemTrungBinh(maths,physics,chemistry){
+            let total = maths+physics+chemistry;
+            let medium = total/3;
+            console.log("tong diem 3 mon toan ly hoa la:",total);
+            console.log("diem trung binh:",medium);
+        }
+        tinhDiemTrungBinh(maths,physics,chemistry);
         // 4.2
+        function doiDoCSangDoF(doC){
+            let doF =(doC*1.8) +32;
+            console.log("do F la:",doF);
+        }
+
+        doiDoCSangDoF(25);
     </script>
 </body>
 </html>
