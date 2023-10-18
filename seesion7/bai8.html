@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let weight=prompt("can nang(kg)");
+        let height=prompt("chieu cao(m)");
+        let bmi = weight/(height**2);
+        
+        function checkBMI(bmi){
+            if(bmi >= 40) return "beo phi do 3";
+            if(bmi >=35 && bmi <= 39.9) return "beo phi do 2";
+            if(bmi >=30 && bmi <= 34.9) return "beo phi do 1";
+            if(bmi >25 && bmi <= 29.9) return "tien beo phi";
+            if(bmi >=25) return "thua can";
+            if(bmi >= 18.5 && bmi <=24.9) return "bin thuong";
+            return "can nang thap"
+        }
+
+        console.log(checkBMI(bmi))
+        
+    </script>
+    
+</body>
+</html>
