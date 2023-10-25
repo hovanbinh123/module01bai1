@@ -8,20 +8,21 @@
 </head>
 <body>
     <script>
-        const isColor = prompt(" nhap mau can kiem tra");
+        const color = prompt(" nhap mau can kiem tra");
         function checkColor(color){
             switch (color){
                 case "xanh":
                 case "đỏ":
                 case "vàng":
                  console.log(color);
-                 break;
+                break;
                 default:
                     console.log("mau khong hop le");
-                    break;
+                break;
             }
         }
-        checkColor(isColor)
+        console.log(checkColor(color))
+        // checkColor(isColor)
     </script>
 </body>
 </html>

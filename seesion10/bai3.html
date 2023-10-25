@@ -8,16 +8,15 @@
 </head>
 <body>
     <script>
-        let age=prompt("nhập tuổi của bạn");
-        // while(age<1 || age>150){
-        //     age-+prompt("moi nhap lai so tuoi")
-        // }
-
-        if (age>=18){
-        console.log("trên 18 tuổi");
-        }else{
-            console.log("chua du 18");
-        }
+        const num = +prompt("nhap so");
+        const result = factorial(num);
+    function factorial(n) {
+    if (n == 0 || n == 1){ 
+      return 1;
+    }else
+      return n * factorial(--n);
+  }
+  console.log("giai thua la " + result);
     </script>
 </body>
 </html>

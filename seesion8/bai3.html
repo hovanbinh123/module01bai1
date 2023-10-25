@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function printNumber (number) {
+ if(number < 0 || number > 100 || typeof number !== 'number') return;
+ let newStr = ''
+ for(let i = 1; i <= number; i++){
+  // i2 = (number + i) -1
+  for(let i2 = i; i2 <= (number + i) - 1; i2++) {
+    if(i2 !== (number + i) - 1) {
+     newStr += i2 + ' '
+    } else {
+     newStr += i2 + '\n'
+    }
+  }
+ }
+ return newStr;
+}
+    </script>
+</body>
+</html>

@@ -8,16 +8,15 @@
 </head>
 <body>
     <script>
-        let age=prompt("nhập tuổi của bạn");
-        // while(age<1 || age>150){
-        //     age-+prompt("moi nhap lai so tuoi")
-        // }
-
-        if (age>=18){
-        console.log("trên 18 tuổi");
-        }else{
-            console.log("chua du 18");
-        }
+        const nhapString = prompt('nhập string cần đảo ngược')
+function reverseString(str) {
+ if(str.length <=0) return;
+ let isReverse = ''
+ for(let i = str.length; i >= 0; i--) {
+   isReverse += str.charAt(i)
+ }
+ return isReverse
+}
     </script>
 </body>
 </html>

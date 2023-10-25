@@ -8,16 +8,16 @@
 </head>
 <body>
     <script>
-        let age=prompt("nhập tuổi của bạn");
-        // while(age<1 || age>150){
-        //     age-+prompt("moi nhap lai so tuoi")
-        // }
-
-        if (age>=18){
-        console.log("trên 18 tuổi");
-        }else{
-            console.log("chua du 18");
-        }
+        // let number = prompt("nhap so nguyen duong");
+        function tinhGiaiThua(n){
+ if(n < 0 || typeof n !== 'number') return;
+ let giaithua = 1
+ for (let i = 1; i <= n; i++) {
+  giaithua *= i
+ }
+ return giaithua
+}
+tinhGiaiThua(6);
     </script>
 </body>
 </html>
