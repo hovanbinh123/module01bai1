@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let input= prompt("nhap so");
+        let array=input.split("");
+        console.log(array);
+        for (let index = 1; index < array.length; index++) {
+            if(array[index]%2==0 & array[index-1]%2==0){
+                array.splice(index,0,"-");
+            }    
+        }
+        console.log(array);
+    </script>
+  </body>
+</html>
