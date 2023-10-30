@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let n = parseInt(prompt("Nhập vào số n:"));
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+        function printPrimes(n) {
+            let count = 0;
+            let currentNumber = 2;
+            while (count < n) {
+                if (isPrime(currentNumber)) {
+                    console.log(currentNumber);
+                    count++;
+                }
+                currentNumber++;
+            }
+        }
+        printPrimes(n);
+    </script>
+</body>
+
+</html>
