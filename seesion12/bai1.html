@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let stores= [{id: 1, name: "Milk", count: 100},{id:2,name:"Yakult",count:100},id{id:3,name:"Butter",count:100,}];
+        // let caets=[];
+        // const arr = [C,R,U,D,E];
+        let store = [
+  {
+    id: 1,
+    name: "Tea",
+    count: 100
+  },
+  {
+    id: 2,
+    name: "Caffe",
+    count: 100
+  },
+  {
+    id: 3,
+    name: "Milk",
+    count: 100
+  }
+]
+
+
+let cart = [];
+let globalCart = {};
+
+while(true) {
+ const command = prompt('nhập yêu cầu');
+ switch (command) {
+   case 'c':
+    const name = prompt('Nhập tên sản phẩm');
+    addToCart(name);
+    break;
+   case 'r':
+    printStoreAndCart(store,cart)
+    break;
+   case 'u':
+    const nameUpdate = prompt('Nhập tên sản phẩm cần sửa');
+    updateToCart(nameUpdate)
+    break;
+   case 'd':
+    const location = +prompt('Nhập vị trí sản phẩm cần xóa');
+    deleteItemInCart(location - 1)
+    break;
+   default:
+    break;
+  }
+ if(command == 'e') {
+  console.log('Cảm ơn bạn đã đên với Rikkei store')
+  break;
+ }
+}
+
+
+
+function addToCart(name) {
+ if(name === '') return console.log('Sản phẩm không tồn tại');
+ for(let i = 0; i < store.length; i++) {
+  if(name.toUpperCase() === store[i].name.toUpperCase()) {
+   const result = store.filter((item) => item.id == store[i].id);
+   const checkCart = cart.filter((item) => item.id == store[i].id);
+   if(checkCart.length === 0) {
+    const newCart = {
+      ...result[0],
+      count: 1
+    }
+    cart.push(newCart);
+    store[i].count -=1;
+    return;
+   }
+   for(let i = 0; i < cart.length; i++) {
+    if(cart[i].name.toUpperCase() == name.toUpperCase()) {
+      cart[i].count++
+      for(let j = 0; j < store.length; j++) {
+        if(store[j].name === cart[i].name) {
+         store[j].count--; 
+        }
+      }
+    }
+   }
+  }
+ }
+}
+function printStoreAndCart(store,cart) {
+ console.log('------------------show----------------------')
+ console.log('***************** store ******************')
+ for(let i = 0; i < store.length; i++) {
+  console.log(Sản phẩm: ${store[i].name} : ${store[i].count})
+ }
+ console.log('****************** cart *********************')
+ if(cart.length === 0) return console.log('không có sản phẩm trong giỏ hàng');
+  for(let i = 0; i < cart.length; i++) {
+  console.log(Sản phẩm: ${cart[i].name} : ${cart[i].count})
+ }
+ console.log('------------------End----------------------')
+}
+
+function updateToCart(nameUpdate) {
+ if(nameUpdate === '') return console.log('Sản phẩm không tồn tại');
+
+ for(let i = 0; i < cart.length; i++){
+  if(cart[i].name.toUpperCase() === nameUpdate.toUpperCase()) {
+   const num = +prompt('nhập số lượng cần chỉnh sửa');
+   cart[i].count = num;
+    for(let j = 0; j < store.length; j++) {
+     if(store[j].id === cart[i].id) {
+      store[j].count = 100 - num; 
+     }
+    }
+    return printStoreAndCart(store,cart)
+  }
+ }
+ return console.log('Sản phẩm không có trong giỏ hàng')
+}
+
+function deleteItemInCart(location){
+ if(location < 0 || location >= cart.length) return console.log('Sản phẩm không tồn tại');
+ const getStoreId = cart[location].id;
+ cart.splice(location,1);
+ store[getStoreId].count = 100; 
+ printStoreAndCart(store,cart)
+}
+    </script>
+</body>
+</html>
