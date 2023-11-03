@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+    <style>
+        /* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+ margin: 0;
+ padding: 0;
+ border: 0;
+ font-size: 100%;
+ font: inherit;
+ vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+ display: block;
+}
+
+body {
+ line-height: 1;
+}
+
+ol,
+ul {
+ list-style: none;
+}
+
+blockquote,
+q {
+ quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+ content: "";
+ content: none;
+}
+
+table {
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+
+table,
+th,
+td {
+ border: 1px solid black;
+}
+
+* {
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ box-sizing: border-box;
+}
+
+body {
+ font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.container {
+ max-width: 1200px;
+ margin: 0 auto;
+}
+
+.row {
+ display: flex;
+ flex-wrap: wrap;
+ margin: 0 -10px;
+}
+
+.todo {
+ width: 800px;
+ margin: 0 auto;
+ background-color: red;
+ padding: 1rem 2rem;
+}
+
+
+
+h2 {
+ text-align: center;
+ font-size: 32px;
+ margin-bottom: 2rem;
+ color: #fff;
+}
+
+form {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+form input {
+ width: 83%;
+ height: 30px;
+ padding: 0 15px;
+}
+
+form button {
+ width: 15%;
+ height: 30px;
+}
+
+.list {
+ width: 800px;
+ margin: 0 auto;
+ padding: 1rem 0;
+}
+
+.list li {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 1rem 1.5rem;
+ background-color: #fff;
+ cursor: pointer;
+}
+
+.list li.active {
+ text-decoration: line-through;
+ background-color: #282828 !important;
+ color: #fff !important;
+}
+
+.list li.active button {
+ pointer-events: none;
+ display: none;
+}
+
+.list li:not(:last-child) {}
+
+.list li:nth-child(odd) {
+ background-color: #f0f0f0;
+}
+    </style>
+
+  <header></header>
+  <main>
+    <section class="todo">
+      <div class="container">
+        <h2>My to do list</h2>
+        <form id="addToDo">
+          <input type="text" id="nameTodo" placeholder="title">
+          <button id="submit">add</button>
+        </form>
+      </div>
+    </section>
+    <section class="list">
+      <ul id="toDoList">
+      </ul>
+    </section>
+  </main>
+  <footer>
+  </footer>
+
+   <script>
+       const formElement = document.querySelector('#addToDo');
+const btnAdd = document.querySelector('#submit');
+const toDoListElemnt = document.querySelector('#toDoList');
+
+const toDoList = [];
+btnAdd.addEventListener('click', function(event) {
+  event.preventDefault();
+  handleSubmit()
+})
+
+function handleSubmit() {
+  const value = document.querySelector('#nameTodo').value;
+  
+  if(value !== '') {
+    const newTodo = {
+      id: toDoList.length + 1,
+      name: value,
+    }
+    toDoList.push(newTodo);
+    renderTodoList(toDoList);
+    return formElement.reset()
+  }
+}
+
+
+
+function renderTodoList(list) {
+  if(!Array.isArray(list) || list.length < 0) return;
+  let listTodo = '';
+  list.map((li,index) => (
+      listTodo += `<li><span>${li.name}</span> <div class="btn_list"><button onclick="updateElementTodo(${li.id}, ${index})">update</button>    <button onclick="deleteElemntTodo(${li.id}, ${index})">delete</button></div></li>`
+  ))
+ toDoListElemnt.innerHTML = listTodo;
+
+ // Lấy danh sách các thẻ <li>
+  const listItems = document.querySelectorAll('#toDoList li');
+
+  // Lặp qua từng thẻ <li> và bắt sự kiện click
+  listItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+     item.classList.toggle('active')
+    });
+  });
+}
+
+
+function deleteElemntTodo(id,index) {
+  for(let i = 0; i < toDoList.length; i++) {
+    if(toDoList[i].id === id) {
+     toDoList.splice(index,1)
+     return renderTodoList(toDoList)
+    }
+  }
+}
+
+function updateElementTodo(id,index) {
+  const value = prompt('giá trị cần thay đổi');
+  for(let i = 0; i < toDoList.length; i++) {
+    if(toDoList[i].id === id) {
+      toDoList[i].name = value;
+      return renderTodoList(toDoList)
+    }
+  }
+}
+
+renderTodoList(toDoList)
+   </script>
+  
+</body>
+
+</html>
